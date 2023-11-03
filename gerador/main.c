@@ -6,14 +6,14 @@ int main() {
     char linha[100]; // Tamanho máximo de cada linha no arquivo de entrada
 
     // Abre o arquivo de entrada para leitura
-    arquivoEntrada = fopen("gerador/dados.txt", "r");
+    arquivoEntrada = fopen("../dados.txt", "r");
     if (arquivoEntrada == NULL) {
         printf("Não foi possível abrir o arquivo de entrada.\n");
         return 1;
     }
 
     // Abre o arquivo de saída para escrita binária
-    arquivoSaida = fopen("gerador/saida.bin", "wb");
+    arquivoSaida = fopen("../saida.bin", "wb");
     if (arquivoSaida == NULL) {
         printf("Não foi possível criar o arquivo de saída.\n");
         fclose(arquivoEntrada);
