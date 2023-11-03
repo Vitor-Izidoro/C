@@ -22,11 +22,14 @@ int main() {
 
     // Lê linha por linha do arquivo de entrada e escreve no arquivo de saída binário
     while (fgets(linha, sizeof(linha), arquivoEntrada) != NULL) {
-        // Remove o caractere de nova linha, se presente
-        linha[strcspn(linha, "\n")] = 0;
-
         // Escreve a linha no arquivo de saída como dados binários
         fwrite(linha, sizeof(char), strlen(linha), arquivoSaida);
+
+        // Detecta a quebra de linha - verifica se o último caractere é uma quebra de linha
+        if (linha[strlen(linha) - 1] == '\n') {
+            // Executar ação quando encontrar a quebra de linha
+            printf("Quebra de linha detectada na linha lida.\n");
+        }
     }
 
     // Fecha os arquivos
