@@ -2,6 +2,7 @@
 #include <string.h>
 
 int main() {
+    
     FILE *arquivoEntrada, *arquivoSaida;
     char linha[100]; // Tamanho máximo de cada linha no arquivo de entrada
 
@@ -38,5 +39,29 @@ int main() {
 
     printf("As informações foram salvas com sucesso no arquivo de saída (saida.bin).\n");
 
+   
+
+    // Abre o arquivo de entrada para leitura
+    arquivoEntrada = fopen("../dados.txt", "r");
+    if (arquivoEntrada == NULL) {
+        printf("Não foi possível abrir o arquivo de entrada.\n");
+        return 1;
+    }
+
+    // Variável para armazenar todos os dados do arquivo
+    char dadosDoArquivo[1000]; // Defina o tamanho conforme necessário
+    dadosDoArquivo[0] = '\0'; // Inicializa a string vazia
+
+    // Lê o arquivo linha por linha e armazena na variável 'dadosDoArquivo'
+    while (fgets(linha, sizeof(linha), arquivoEntrada) != NULL) {
+        strcat(dadosDoArquivo, linha);
+    }
+
+    // Fecha o arquivo de entrada
+    fclose(arquivoEntrada);
+
+    // Exibe os dados lidos do arquivo
+    printf("Conteudo do arquivo:\n%s", dadosDoArquivo);
     return 0;
+    
 }
