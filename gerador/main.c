@@ -77,7 +77,15 @@ int main() {
 
     // Exibe os dados lidos do arquivo
     printf("Conteudo do arquivo:\n%s", dadosDoArquivo);
+    if (dadosDoArquivo = NULL) {
 
+        printf("Falha na alocação de memória.\n");
+        
+        
+    
+    } else {
+        printf("Valor alocado dinamicamente. \n");
+    }
     // Libera a memória alocada
     free(dadosDoArquivo);
     
