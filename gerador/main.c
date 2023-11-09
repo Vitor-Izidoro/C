@@ -1,12 +1,11 @@
 #include <stdio.h>
-#include <stdlib.h> // Adiciona a biblioteca necessária para malloc e free
 #include <string.h>
 
 int main() {
     
     FILE *arquivoEntrada, *arquivoSaida;
     char linha[100]; // Tamanho máximo de cada linha no arquivo de entrada
-    
+
     // Abre o arquivo de entrada para leitura
     arquivoEntrada = fopen("../dados.txt", "r");
     if (arquivoEntrada == NULL) {
@@ -40,6 +39,8 @@ int main() {
 
     printf("As informações foram salvas com sucesso no arquivo de saída (saida.bin).\n");
 
+   
+
     // Abre o arquivo de entrada para leitura
     arquivoEntrada = fopen("../dados.txt", "r");
     if (arquivoEntrada == NULL) {
@@ -48,28 +49,12 @@ int main() {
     }
 
     // Variável para armazenar todos os dados do arquivo
-    char *dadosDoArquivo; // Usando ponteiro para char
-    size_t tamanhoMaximo = 1000; // Defina o tamanho conforme necessário
-    dadosDoArquivo = (char *)malloc(tamanhoMaximo * sizeof(char)); // Aloca dinamicamente memória
-
-    if (dadosDoArquivo == NULL) {
-        printf("Erro ao alocar memória para dados do arquivo.\n");
-        return 1;
-    }
-
+    char dadosDoArquivo[1000]; // Defina o tamanho conforme necessário
     dadosDoArquivo[0] = '\0'; // Inicializa a string vazia
 
     // Lê o arquivo linha por linha e armazena na variável 'dadosDoArquivo'
     while (fgets(linha, sizeof(linha), arquivoEntrada) != NULL) {
-        // Certifique-se de que há espaço suficiente na memória alocada
-        if (strlen(dadosDoArquivo) + strlen(linha) < tamanhoMaximo) {
-            strcat(dadosDoArquivo, linha);
-        } else {
-            printf("Erro: Tamanho máximo excedido ao ler dados do arquivo.\n");
-            free(dadosDoArquivo); // Libera a memória alocada antes de sair
-            fclose(arquivoEntrada);
-            return 1;
-        }
+        strcat(dadosDoArquivo, linha);
     }
 
     // Fecha o arquivo de entrada
@@ -77,17 +62,6 @@ int main() {
 
     // Exibe os dados lidos do arquivo
     printf("Conteudo do arquivo:\n%s", dadosDoArquivo);
-    if (dadosDoArquivo = NULL) {
-
-        printf("Falha na alocação de memória.\n");
-        
-        
-    
-    } else {
-        printf("Valor alocado dinamicamente. \n");
-    }
-    // Libera a memória alocada
-    free(dadosDoArquivo);
-    
     return 0;
+    
 }
